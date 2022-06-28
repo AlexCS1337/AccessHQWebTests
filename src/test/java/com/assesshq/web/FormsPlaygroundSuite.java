@@ -20,21 +20,19 @@ public class FormsPlaygroundSuite {
 
     @Test
     public void Verify_Form_Submit() throws InterruptedException {
+        // Arrange
         driver.findElement(By.cssSelector("[aria-label=forms]")).click();
-        driver.findElement(By.id("name")).sendKeys("Blah");
-        driver.findElement(By.id("email")).sendKeys("Blah@blah.com");
-        driver.findElement(By.cssSelector("[for=agree]")).click();
 
-        for (WebElement currentElement : driver.findElements(By.tagName("button"))) {
-            if (currentElement.getText().equalsIgnoreCase("submit")) {
-                currentElement.click();
-                break;
-            }
-        }
+        var form = new Form(driver);
+        form.setName("Blah");
+        form.setEmail("blah@blah.com");
+        form.clickAgree();
 
-        var popupElement = driver.findElement(By.className("popup-message"));
-        new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOf(popupElement));
-        Assertions.assertEquals("Thanks for your feedback Blah", popupElement.getText());
+        // Act
+        form.clickSubmit();
+
+        // Assert
+        Assertions.assertEquals("Thanks for your feedback Blah", form.getPopupText());
     }
 
     @AfterEach
