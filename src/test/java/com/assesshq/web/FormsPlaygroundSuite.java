@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FormsPlaygroundSuite {
-    //private ChromeDriver driver;
     private WebDriver driver;
 
     @BeforeEach
@@ -16,7 +15,7 @@ public class FormsPlaygroundSuite {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
 
-        driver.get("https://d18u5zoaatmpxx.cloudfront.net/#/forms");
+        driver.get("https://d18u5zoaatmpxx.cloudfront.net/");
     }
 
     @Test
@@ -25,9 +24,7 @@ public class FormsPlaygroundSuite {
         driver.findElement(By.id("name")).sendKeys("Blah");
         driver.findElement(By.id("email")).sendKeys("Blah@blah.com");
         driver.findElement(By.cssSelector("[for=agree]")).click();
-        //driver.findElementByClassName("v-input--selection-controls__ripple").click();
 
-        //driver.findElementByClassName("v-btn--is-elevated").click();
         for (WebElement currentElement : driver.findElements(By.tagName("button"))) {
             if (currentElement.getText().equalsIgnoreCase("submit")) {
                 currentElement.click();
