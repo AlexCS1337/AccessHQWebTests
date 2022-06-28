@@ -1,4 +1,4 @@
-package com.assesshq.web;
+package com.assesshq.web.model;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

@@ -1,4 +1,4 @@
-package com.assesshq.web;
+package com.assesshq.web.tests;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.chrome.ChromeDriver;
