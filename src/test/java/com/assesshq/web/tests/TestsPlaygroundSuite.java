@@ -3,10 +3,11 @@ package com.assesshq.web.tests;
 import com.assesshq.web.model.PlanetPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.text.ParseException;
 
 public class TestsPlaygroundSuite {
 
@@ -35,8 +36,22 @@ public class TestsPlaygroundSuite {
         driver.findElement(By.cssSelector("[aria-label=planets]")).click();
 
         var planetPage = new PlanetPage(driver);
-        planetPage.clickExplore("Earth");
+        planetPage.clickExploreByName("Earth");
         Assertions.assertEquals("Exploring Earth", planetPage.getPopupText());
+    }
+
+    @Test
+    public void Verify_Saturn_Prompt() throws ParseException {
+        // Arrange
+        driver.findElement(By.cssSelector("[aria-label=planets]")).click();
+
+        // Act
+        var planetPage = new PlanetPage(driver);
+        //planetPage.clickExplore(new RadiusMatchingStratgey(58232));
+        planetPage.clickExploreByRadius(58232);
+
+        // Assert
+        Assertions.assertEquals("Exploring Saturn", planetPage.getPopupText());
     }
 
     @AfterEach
