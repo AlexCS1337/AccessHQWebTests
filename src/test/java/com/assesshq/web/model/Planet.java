@@ -28,4 +28,10 @@ public class Planet {
         double radius = NumberFormat.getNumberInstance().parse(radiusText).doubleValue();
         return radius;
     }
+
+    public double getDistance() throws ParseException {
+        var distanceText = planetElement.findElement(By.className("distance")).getText();
+        double distance = NumberFormat.getNumberInstance().parse(distanceText).doubleValue();
+        return distance;
+    }
 }
