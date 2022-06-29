@@ -2,21 +2,21 @@ package com.assesshq.web.model;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class Planet {
-    private final WebDriver driver;
+    private final WebElement planetElement;
     private String planetName;
 
-    public Planet(WebDriver driver) {
-        this.driver = driver;
+    public Planet(WebElement planetElement) {
+        this.planetElement = planetElement;
     }
 
     public String getName() {
-        planetName = driver.findElement(By.className("name")).getText();
-        return planetName;
+        return planetElement.findElement(By.className("name")).getText();
     }
 
     public void clickExplore() {
-        driver.findElement(By.className("button")).click();
+        planetElement.findElement(By.tagName("button")).click();
     }
 }

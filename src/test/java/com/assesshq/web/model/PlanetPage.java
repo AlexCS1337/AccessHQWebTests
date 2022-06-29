@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlanetPage {
 
     private final WebDriver driver;
@@ -39,8 +42,11 @@ public class PlanetPage {
         return getPopupMessage().getText();
     }
 
-    public Planet[] getPlanets() {
-        Planet[] planets = driver.findElements(By.className("planet")).toArray(new Planet[0]);
+    public List<Planet> getPlanets() {
+        var planets = new ArrayList<Planet>();
+        for (WebElement planetElement : driver.findElements(By.className("planet"))) {
+            planets.add(new Planet(planetElement));
+        }
         return planets;
     }
 
