@@ -34,7 +34,7 @@ public class PlanetPage {
         }
     }
 
-    public void clickExplore(MatchingStrategy strategy) {
+    public void clickExplore(MatchingStrategy strategy) throws ParseException {
         for (Planet planet : getPlanets()
         ) {
             if (strategy.match(planet)) {

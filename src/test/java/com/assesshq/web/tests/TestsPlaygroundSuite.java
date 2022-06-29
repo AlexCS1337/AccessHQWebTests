@@ -32,11 +32,12 @@ public class TestsPlaygroundSuite {
     }
 
     @Test
-    public void Verify_Earth_Prompt() {
+    public void Verify_Earth_Prompt() throws ParseException {
         driver.findElement(By.cssSelector("[aria-label=planets]")).click();
 
         var planetPage = new PlanetPage(driver);
-        planetPage.clickExploreByName("Earth");
+        //planetPage.clickExploreByName("Earth");
+        planetPage.clickExplore(planet -> planet.getName().equalsIgnoreCase("Earth"));
         Assertions.assertEquals("Exploring Earth", planetPage.getPopupText());
     }
 
@@ -47,8 +48,8 @@ public class TestsPlaygroundSuite {
 
         // Act
         var planetPage = new PlanetPage(driver);
-        //planetPage.clickExplore(new RadiusMatchingStratgey(58232));
-        planetPage.clickExploreByRadius(58232);
+        planetPage.clickExplore(planet -> planet.getRadius() == 58232);
+        //planetPage.clickExploreByRadius(58232);
 
         // Assert
         Assertions.assertEquals("Exploring Saturn", planetPage.getPopupText());

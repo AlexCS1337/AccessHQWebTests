@@ -2,7 +2,9 @@ package com.assesshq.web.strategies;
 
 import com.assesshq.web.model.Planet;
 
+import java.text.ParseException;
+
 public interface MatchingStrategy {
 
-    boolean match(Planet planet);
+    public boolean match(Planet planet) throws ParseException;
 }
