@@ -23,15 +23,31 @@ public class Planet {
         planetElement.findElement(By.tagName("button")).click();
     }
 
-    public double getRadius() throws ParseException {
+    public double getRadius() {
         var radiusText = planetElement.findElement(By.className("radius")).getText();
-        double radius = NumberFormat.getNumberInstance().parse(radiusText).doubleValue();
-        return radius;
+        double result;
+        try {
+            result = NumberFormat.getInstance()
+                    .parse(radiusText)
+                    .doubleValue();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        return result;
     }
 
-    public double getDistance() throws ParseException {
+    public double getDistance() {
         var distanceText = planetElement.findElement(By.className("distance")).getText();
-        double distance = NumberFormat.getNumberInstance().parse(distanceText).doubleValue();
-        return distance;
+        double result;
+        try {
+            result = NumberFormat.getInstance()
+                    .parse(distanceText)
+                    .doubleValue();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        return result;
     }
 }

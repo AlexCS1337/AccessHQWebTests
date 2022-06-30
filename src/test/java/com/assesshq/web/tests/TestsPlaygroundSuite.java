@@ -1,5 +1,6 @@
 package com.assesshq.web.tests;
 
+import com.assesshq.web.model.Planet;
 import com.assesshq.web.model.PlanetPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
@@ -33,11 +34,14 @@ public class TestsPlaygroundSuite {
 
     @Test
     public void Verify_Name_Explore() throws ParseException {
+        //Arrange
         driver.findElement(By.cssSelector("[aria-label=planets]")).click();
 
+        //Act
         var planetPage = new PlanetPage(driver);
-        //planetPage.clickExploreByName("Earth");
-        planetPage.clickExplore(planet -> planet.getName().equalsIgnoreCase("Earth"));
+        planetPage.clickExplore(planetPage.getPlanet(p -> p.getName().equalsIgnoreCase("Earth")));
+
+        //Assert
         Assertions.assertEquals("Exploring Earth", planetPage.getPopupText());
     }
 
@@ -48,22 +52,22 @@ public class TestsPlaygroundSuite {
 
         // Act
         var planetPage = new PlanetPage(driver);
-        planetPage.clickExplore(p -> p.getRadius() == 58232);
-        //planetPage.clickExplore(planet -> planet.getRadius() == 58232);
-        //planetPage.clickExploreByRadius(58232);
+        Planet planet = planetPage.getPlanet(p -> p.getRadius() == 58232);
+        planetPage.clickExplore(planet);
 
         // Assert
         Assertions.assertEquals("Exploring Saturn", planetPage.getPopupText());
     }
 
     @Test
-    public void Verify_Distance_Explore() throws ParseException {
+    public void Verify_Distance_Explore() {
         // Arrange
         driver.findElement(By.cssSelector("[aria-label=planets]")).click();
 
         // Act
         var planetPage = new PlanetPage(driver);
-        planetPage.clickExplore(planet -> planet.getDistance() == 778500000);
+        Planet planet = planetPage.getPlanet(p -> p.getDistance() == 778500000);
+        planetPage.clickExplore(planet);
 
         // Assert
         Assertions.assertEquals("Exploring Jupiter", planetPage.getPopupText());
