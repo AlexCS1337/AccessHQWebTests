@@ -48,7 +48,8 @@ public class TestsPlaygroundSuite {
 
         // Act
         var planetPage = new PlanetPage(driver);
-        planetPage.clickExplore(planet -> planet.getRadius() == 58232);
+        planetPage.clickExplore(p -> p.getRadius() == 58232);
+        //planetPage.clickExplore(planet -> planet.getRadius() == 58232);
         //planetPage.clickExploreByRadius(58232);
 
         // Assert
