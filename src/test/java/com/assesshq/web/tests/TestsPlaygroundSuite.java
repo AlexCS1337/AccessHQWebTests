@@ -64,10 +64,25 @@ public class TestsPlaygroundSuite {
         // Act
         var planetPage = new PlanetPage(driver);
         planetPage.clickExplore(planet -> planet.getDistance() == 778500000);
-        //planetPage.clickExploreByRadius(58232);
 
         // Assert
         Assertions.assertEquals("Exploring Jupiter", planetPage.getPopupText());
+    }
+
+    @Test
+    public void Verify_Correct_Total() {
+        // GIVEN I am on home page
+        // WHEN I set <item> to <qty>
+        // THEN <item> subtotal is $<subtotal>
+        // AND the total is $<total>
+    }
+
+    @Test
+    public void Verify_Correct_Multiple_Item_Price_Total() {
+        // GIVEN I am on home page
+        // WHEN I set Livi's Qty to 4
+        // AND T-shirt's Qty tp 5
+        // Then the total is $379.91
     }
 
     @AfterEach
